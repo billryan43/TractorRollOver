@@ -2,7 +2,8 @@
 //	clear screen -- must be run in PUTTY
 //
 
-#include <stdio.h>
+#include "cls.h"
+
 void cls()
 {
 
