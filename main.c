@@ -2,7 +2,7 @@
 	MPU6050 Interfacing with Raspberry Pi
 	http://www.electronicwings.com
 	
-	mpu6050_15
+	mpu6050_20
 */
 
 #include <wiringPiI2C.h>
