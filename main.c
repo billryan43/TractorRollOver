@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
+#include "cls.h"
 
 #define Device_Address 0x68	/*Device Address/Identifier for MPU6050*/
 
@@ -34,25 +35,6 @@
 int fd=0;
 int lcdHandle=0;
 int lcdAddress = 0x27;
-
- 
-//
-//	clear screen -- must be run in PUTTY
-//
-void cls()
-{
-
-// #include <stdio.h>
-
-char FF[5]={27,'[','2','J'}; 		// the character to clear the terminal screen
-char FG[6]={27,'[',1,1,'f'};    // move the curser to the upper left of the screen
-
-
-printf("%s", FF);
-printf("%s", FG);
-
-
-}
 
 
 void MPU6050_Init(){
