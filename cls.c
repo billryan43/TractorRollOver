@@ -3,16 +3,27 @@
 //
 
 #include "cls.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+static char clearData[128];
+static int  clearLen=0;
 
 void cls()
 {
 
-char FF[5]={27,'[','2','J'}; 		// the character to clear the terminal screen
-char FG[6]={27,'[',1,1,'f'};    // move the curser to the upper left of the screen
+  if (clearLen==0) { 
+    FILE *pipe=popen("clear", "r");
+    for (char c=fgetc(pipe); !feof(pipe); c=fgetc(pipe)) { 
+      if (clearLen>sizeof(clearData)) {
+        fprintf(stderr,"error reading clear screen data, size > %d\n", sizeof(clearData));
+        break;
+      }
+      clearData[clearLen++]=c;
+    }
+    fclose(pipe);
+  }
 
-
-printf("%s", FF);
-printf("%s", FG);
-
-
+  fwrite(clearData,clearLen,1,stdout);   
+  
 }
